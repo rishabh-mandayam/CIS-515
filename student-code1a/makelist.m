@@ -1,26 +1,17 @@
 function lnodes = makelist(lpoly)
-    [m, ~, ~] = size(lpoly);
+    m= size(lpoly, 3); % num of polygons 
+    num_control_points = size(lpoly, 2); % num of control points
+    total_points = (m * (num_control_points - 1))+ 1; 
     
-    % Calculate the number of points
-    num_points = (m - 1) * size(lpoly, 3) + 1;
+    lnodes = zeros(2, total_points);
     
-    % Initialize lnodes with zeros
-    lnodes = zeros(2, num_points);
+    % get nodes for first cpoly
+    lnodes(:, 1:num_control_points) = lpoly(:, :, 1);
     
-    % Initialize the index to keep track of lnodes
-    idx = 1;
-    
-    % Loop through each slice of lpoly
-    for i = 1:size(lpoly, 3)
-        % Extract the current slice
-        current_slice = lpoly(:, :, i);
-        
-        % Add the first point of the current slice to lnodes
-        lnodes(:, idx) = current_slice(:, 1);
-        idx = idx + 1;
-        
-        % Add the remaining points (excluding the first point) of the current slice
-        lnodes(:, idx:idx+m-2) = current_slice(:, 2:end);
-        idx = idx + m - 1;
+    % Concat the rest of the cpolys, skipping the first point
+    for i = 2:M
+        start = (i - 1) * (num_control_points - 1) + 1;
+        finish = start + num_control_points - 2;
+        lnodes(:, start:finish) = lpoly(:, 2:end, i);
     end
 end
