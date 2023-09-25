@@ -9,7 +9,7 @@ function [ud, ld] = subdecas(cpoly)
 
     for j = 2:m
         %preform computation
-        for i = 1:(m-j)
+        for i = 1:(m-j+1)
             curr_control_point = 1/2*b(:, i) + 1/2*b(:, i+1);
             bb(:, i) = curr_control_point;
             %bb(i) = b^(j)_i
@@ -18,16 +18,13 @@ function [ud, ld] = subdecas(cpoly)
         next_ud = bb(:, 1);
         ud = [ud bb(:, 1)];
         
-        if (m - j ~= 0)
             
-            next_ld = bb(:, m - j);
+        next_ld = bb(:, m - j + 1);
+        
+        ld = [bb(:, m - j + 1) ld];
     
-            
-            ld = [bb(:, m - j) ld];
-    
-            b = bb;
-            bb = zeros([2 m]);
-        end
+        b = bb;
+        bb = zeros([2 m]);
     end
 
 end
