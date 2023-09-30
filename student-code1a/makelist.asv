@@ -9,11 +9,8 @@ function lnodes = makelist(lpoly)
     lnodes(:, 1:num_control_points) = lpoly(:, :, 1);
     
     % Concat the rest of the cpolys, skipping the first point
-    start = num_control_points + 1;
     for i = 2:m
-        if (i ~= 2)
-            start = start + num_control_points - 1;
-        end
+        start = (i) * (num_control_points - 1) + 1;
         finish = start + num_control_points - 2;
         to_insert = lpoly(:, 2:end, i);
         lnodes(:, start:finish) = lpoly(:, 2:end, i);
