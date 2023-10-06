@@ -5,7 +5,7 @@ function rotate_figure(vertices, theta, num_frames)
 
     % Plot the original figure in blue
     plot(vertices(1, :), vertices(2, :), 'b-');
-    hold on;
+    hold on;  
 
     for frame = 1:num_frames
         % Create the rotation matrix R(θ)
@@ -22,7 +22,6 @@ function rotate_figure(vertices, theta, num_frames)
         plot(rotated_x, rotated_y, 'r-');
         axis equal;
 
-        % Add a pause to show the animation
         pause(0.1);
     end
 end
