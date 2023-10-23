@@ -8,8 +8,10 @@ function drawbezier_dc(B,nn,drawb)
  % nn is the subdivision level
 
  %%% DRAW CURVE HERE %%%
+ cla holdon
 
  % Plot the curve segment as a random color
+ plot(B(1,:),B(2,:)i -s)
  if drawb == 1 
     %%% Plot the Bezier points and segments  as red + %%%
  else
