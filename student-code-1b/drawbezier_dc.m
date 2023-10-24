@@ -11,7 +11,7 @@ function drawbezier_dc(B,nn,drawb)
     random_color = [rand, rand, rand];
 
     % Plot the curve segment as a random color
-    plot(x, y, 'o-', 'Color', random_color, 'LineWidth', 1.5);
+    plot(x, y, 'Color', random_color, 'LineWidth', 1.5);
     hold on;
 
     % Check the drawb parameter to decide how to plot control points/polygons
