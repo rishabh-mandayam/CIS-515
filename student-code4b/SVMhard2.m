@@ -24,7 +24,16 @@ mu = lam(p+1:p+q,1);
 %%% Solve for w and b here, as well as numsvl1 and numsvm1
 %%% numsvl1 is the count for nonzero lambda and numsvm1 is the number of nonzero mu
 %%%%%%
-w = -X*lam;
+w=(u*lamb)-(v*mu);
+
+positive_lambda = find(lamb>tols)
+positive_mu = find(mu>tols)
+
+sum_u = sum(u(:, positive_lambda), 2);
+sum_v = sum(v(:, positive_mu), 2);
+numsvl1 = length(positive_lambda);
+numsvm1 = length(positive_mu);
+b = w' * (sum_u/numsvl1 + sum_v/numsvm1) / 2;
 
 % Some additional error checking
 nw = sqrt(w'*w);   % norm of w
@@ -42,4 +51,3 @@ if n == 2
    end
 end
 end
-
