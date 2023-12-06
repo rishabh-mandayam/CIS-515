@@ -7,5 +7,24 @@ function [w,b,xi,nxi,alpha] = ridgeregb1(X,y,K)
 %  Solution in terms of the dual variables
 %  This version does not display the solution
 %
+% Get the dimensions of the matrices.
+m = size(y, 1);
+n = size(X, 2);
+
+% onstruct the system of equations.
+A = [X*X' + K*eye(m), ones(m, 1);  ones(1, m), zeros(1, 1)];
+b = [y; zeros(1, 1)];
+
+% Solve the system of equations.
+sol = A\b;
+
+% Extract the solutions for alpha and mu.
+alpha = sol(1);
+mu = sol(2);
+
+w = transpose(X) * alpha
+b = mu
+xi = K * alpha
+nxi = norm(xi)
 
 end
