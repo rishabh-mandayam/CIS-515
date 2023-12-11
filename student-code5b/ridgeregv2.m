@@ -6,6 +6,15 @@ function [w,nw2,b,xi,nxi] = ridgeregv2(X,y,K)
 %  Solution in terms of the primal variables
 %  And also in terms of the dual variable alpha
 %
+m = size(y,1); n = size(X,2);
+XX = [X ones(m,1)];
+
+alpha = inv(XX * transpose(XX)+ K*eye(m)) * y
+sol = transpose(XX)*alpha
+
+w = sol(1)
+
+xi = K*alpha
 
 end
 
