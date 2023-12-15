@@ -10,8 +10,8 @@ XX = [X ones(m,1)];
 
 sol = pinv(XX) * y;
 
-wps = sol(1);
-bps = sol(2);
+wps = sol(1, :); 
+bps = sol(2:end, :); 
 nw3 = norm(wps);
 
 xi = y - X*wps - bps;
