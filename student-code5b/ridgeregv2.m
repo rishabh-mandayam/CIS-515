@@ -12,8 +12,8 @@ XX = [X ones(m,1)];
 alpha = inv(XX * transpose(XX)+ K*eye(m)) * y ;
 sol = transpose(XX)*alpha ;
 
-w = sol(1, :); 
-b = sol(2:end, :); 
+w = sol(1:n, :); 
+b = sol(n+1:end, :); 
 nw2 = norm(w);
 xi = K*alpha;
 nxi = norm(xi);
