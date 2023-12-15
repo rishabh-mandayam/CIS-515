@@ -15,16 +15,15 @@ n = size(X, 2);
 A = [X*X' + K*eye(m), ones(m, 1);  ones(1, m), zeros(1, 1)];
 b = [y; zeros(1, 1)];
 
-% Solve the system of equations.
 sol = A\b;
 
 % Extract the solutions for alpha and mu.
-alpha = sol(1);
-mu = sol(2);
+alpha = sol(1:m, :); 
+mu = sol(end, :); 
 
-w = transpose(X) * alpha
-b = mu
-xi = K * alpha
-nxi = norm(xi)
+w = transpose(X) * alpha;
+b = mu;
+xi = K * alpha;
+nxi = norm(xi);
 
 end

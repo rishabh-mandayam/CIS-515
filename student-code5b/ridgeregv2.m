@@ -9,12 +9,14 @@ function [w,nw2,b,xi,nxi] = ridgeregv2(X,y,K)
 m = size(y,1); n = size(X,2);
 XX = [X ones(m,1)];
 
-alpha = inv(XX * transpose(XX)+ K*eye(m)) * y
-sol = transpose(XX)*alpha
+alpha = inv(XX * transpose(XX)+ K*eye(m)) * y ;
+sol = transpose(XX)*alpha ;
 
-w = sol(1)
-
-xi = K*alpha
+w = sol(1, :); 
+b = sol(2:end, :); 
+nw2 = norm(w);
+xi = K*alpha;
+nxi = norm(xi);
 
 end
 
